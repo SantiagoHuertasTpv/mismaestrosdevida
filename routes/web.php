@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ComentarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::post('/comentarios/guardar', [ComentarioController::class, 'store'])->name('comentarios.store');
+
+Route::get('/test-comentario', function () {
+    return view('test_comentario');
 });
