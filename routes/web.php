@@ -14,7 +14,7 @@ use App\Http\Controllers\ComentarioController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('test-comentario');
 });
 
 Route::post('/comentarios/guardar', [ComentarioController::class, 'store'])->name('comentarios.store');
