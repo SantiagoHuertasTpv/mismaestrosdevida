@@ -8,11 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .bg-custom-image {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
-                              url("{{ asset('images/portada.png') }}");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+            url("{{ asset('images/portada.png') }}");
             background-size: cover;
             /* 50% horizontal, 20% vertical empuja la imagen un poco hacia abajo */
-            background-position: 50% 20%; 
+            background-position: 50% 20%;
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
@@ -22,12 +22,12 @@
 <body class="bg-black min-h-screen flex flex-col items-center justify-center p-6 bg-custom-image">
 
     <div class="flex flex-col items-center space-y-10 w-full">
-        
+
         <div class="text-center space-y-4">
             <h1 class="text-white text-5xl md:text-7xl font-black tracking-tighter uppercase">
                 MIS MAESTROS DE VIDA
             </h1>
-            
+
             <p class="text-red-600 text-base md:text-lg font-bold max-w-2xl mx-auto uppercase italic leading-tight">
                 "Puedes enviarnos tu comentario sobre tu maestro de vida y lo publicaremos en redes sociales"
             </p>
@@ -82,4 +82,5 @@
     </div>
 
 </body>
+
 </html>
