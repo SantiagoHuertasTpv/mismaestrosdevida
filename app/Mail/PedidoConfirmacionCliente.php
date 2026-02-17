@@ -1,5 +1,4 @@
 <?php
-
 // app/Mail/PedidoConfirmacionCliente.php
 namespace App\Mail;
 
@@ -12,11 +11,17 @@ class PedidoConfirmacionCliente extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Pedido $pedido) {}
+    // Declaramos la propiedad de forma explícita para PHP 7.x
+    public $pedido;
+
+    public function __construct(Pedido $pedido)
+    {
+        $this->pedido = $pedido;
+    }
 
     public function build()
     {
-        return $this->subject("Pedido recibido (#{$this->pedido->id})")
-            ->markdown('emails.pedidos.cliente');
+        return $this->subject("Tu pedido de Maestros de Vida (#{$this->pedido->id})")
+                    ->view('emails.pedidos.cliente');
     }
 }

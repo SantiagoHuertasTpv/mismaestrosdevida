@@ -11,7 +11,14 @@ class PedidoNotificacionAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Pedido $pedido) {}
+    // 1. Declaramos la propiedad fuera del constructor
+    public $pedido;
+
+    // 2. Asignamos la variable manualmente
+    public function __construct(Pedido $pedido) 
+    {
+        $this->pedido = $pedido;
+    }
 
     public function build()
     {
