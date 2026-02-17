@@ -66,6 +66,7 @@ return [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
         ],
+        'pedidos_to' => env('MAIL_PEDIDOS_TO', 'mismaestrosdevida@gmail.com'),
 
         'array' => [
             'transport' => 'array',

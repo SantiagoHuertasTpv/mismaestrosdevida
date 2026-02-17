@@ -19,6 +19,7 @@ class Comentario extends Model
         'comentario_corto', 
         'comentario_largo',
         'fecha_creacion',  
-        'activado'         
+        'activado' ,
+        'token'      
     ];
 }

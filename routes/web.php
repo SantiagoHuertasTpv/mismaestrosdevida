@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +14,23 @@ use App\Http\Controllers\ComentarioController;
 |
 */
 
+
+// La home ahora solo muestra el prólogo
 Route::get('/', function () {
-    return view('test_comentario');
-});
+    return view('home');
+})->name('home');
+
+// Nueva ruta para el formulario de testimonios/comentarios
+Route::get('/tu-maestro', function () {
+    return view('comentarios.create');
+})->name('comentarios.create');
 
 Route::post('/comentarios/guardar', [ComentarioController::class, 'store'])->name('comentarios.store');
 
-Route::get('/test-comentario', function () {
-    return view('test_comentario');
-});
+// Rutas de Pedidos
+Route::get('/pedido', [PedidoController::class, 'create'])->name('pedido.create');
+Route::post('/pedido', [PedidoController::class, 'store'])->name('pedido.store');
+
+// Ruta para activar comentarios desde el email
+Route::get('/comentarios/activar/{id}/{token}', [ComentarioController::class, 'activar'])
+    ->name('comentarios.activar');
