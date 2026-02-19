@@ -63,6 +63,12 @@
                 class="w-full bg-[#2a2a2a] text-white border-none rounded-xl p-3 focus:ring-2 focus:ring-cyan-600 outline-none transition-all">
         </div>
 
+        <div class="space-y-2 md:col-span-2">
+            <label class="text-gray-400 text-xs uppercase px-1">Observaciones / Notas del pedido</label>
+            <textarea name="observaciones" rows="3"
+                class="w-full bg-[#2a2a2a] text-white border-none rounded-xl p-3 focus:ring-2 focus:ring-amber-500 outline-none transition-all resize-none">{{ old('observaciones') }}</textarea>
+        </div>
+
         <div class="md:col-span-2 flex items-start space-x-3 py-2">
             <input id="acepto" name="acepto" type="checkbox" required
                 class="w-5 h-5 bg-[#2a2a2a] border-white/10 rounded text-cyan-600 focus:ring-cyan-600 cursor-pointer">

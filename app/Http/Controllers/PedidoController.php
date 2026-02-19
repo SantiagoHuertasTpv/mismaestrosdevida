@@ -30,7 +30,7 @@ class PedidoController extends Controller
 
             'cantidad'  => 'required|integer|min:1|max:20',
             'nota'      => 'nullable|string|max:2000',
-
+            'observaciones' => 'nullable|string|max:1000',
             'acepto'    => 'required|accepted',
         ], [
             'acepto.accepted' => 'Debes aceptar la política/condiciones para enviar el pedido.',
