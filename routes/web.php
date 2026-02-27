@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\CancionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +35,6 @@ Route::post('/pedido', [PedidoController::class, 'store'])->name('pedido.store')
 // Ruta para activar comentarios desde el email
 Route::get('/comentarios/activar/{id}/{token}', [ComentarioController::class, 'activar'])
     ->name('comentarios.activar');
+    
+// Usamos /q/ para que el QR sea más simple y rápido de leer
+Route::get('/q/{slug}', [CancionController::class, 'redirigir'])->name('qr.direct');
