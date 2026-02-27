@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cancion;
 
 class CancionController extends Controller
 {
-   public function redirigir($slug): RedirectResponse
+    public function redirigir($slug): RedirectResponse
     {
         // Busca la canción por el slug o lanza un 404 si no existe
         $cancion = Cancion::where('slug', $slug)->firstOrFail();
