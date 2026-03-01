@@ -10,26 +10,26 @@ use ZipArchive;
 class QrCancionController extends Controller
 {
     public function crearqr($id)
-{
-    // 1. Buscamos la canción
-    $cancion = QrCancion::findOrFail($id);
-    $urlQr = "https://www.mismaestrosdevida.com/q/" . $cancion->slug;
+    {
+        // 1. Buscamos la canción
+        $cancion = QrCancion::findOrFail($id);
+        $urlQr = "https://www.mismaestrosdevida.com/q/" . $cancion->slug;
 
-    // 2. LIMPIEZA ABSOLUTA: Borramos cualquier eco o error previo en el servidor
-    if (ob_get_length()) ob_end_clean();
+        // 2. LIMPIEZA ABSOLUTA: Borramos cualquier eco o error previo en el servidor
+        if (ob_get_length()) ob_end_clean();
 
-    // 3. Generamos el QR
-    $qrCode = QrCode::format('png')
-                ->size(500)
-                ->margin(1)
-                ->errorCorrection('H')
-                ->generate($urlQr);
+        // 3. Generamos el QR
+        $qrCode = QrCode::format('png')
+            ->size(500)
+            ->margin(1)
+            ->errorCorrection('H')
+            ->generate($urlQr);
 
-    // 4. Respuesta manual para saltarnos bloqueos de Laravel
-    return response($qrCode)
+        // 4. Respuesta manual para saltarnos bloqueos de Laravel
+        return response($qrCode)
             ->header('Content-Type', 'image/png')
-            ->header('Content-Disposition', 'attachment; filename="qr_'.$cancion->id.'_'.$cancion->nombre.'.png"');
-}
+            ->header('Content-Disposition', 'attachment; filename="qr_' . $cancion->id . '_' . $cancion->nombre . '.png"');
+    }
 
     /**
      * Descarga todos los QR de la tabla en un archivo ZIP
@@ -56,7 +56,7 @@ class QrCancionController extends Controller
                     ->generate($urlQr);
 
                 // Añadimos cada imagen al ZIP con un nombre descriptivo
-                $zip->addFromString("qr_{$cancion->slug}.png", $qrCode);
+                $zip->addFromString("{$cancion->id}_qr_{$cancion->nombre}.png", $qrCode);
             }
 
             $zip->close();
