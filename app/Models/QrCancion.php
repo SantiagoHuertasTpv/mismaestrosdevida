@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Capitulo;
 
 class QrCancion extends Model
 {
@@ -14,4 +15,9 @@ class QrCancion extends Model
 
     // Campos que se pueden llenar masivamente
     protected $fillable = ['nombre', 'slug', 'url_destino', 'clicks'];
+
+    public function capitulo() {
+        return $this->belongsTo(Capitulo::class, 'idcapitulo');
+    }
+
 }

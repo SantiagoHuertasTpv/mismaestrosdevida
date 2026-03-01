@@ -23,6 +23,9 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// Debajo de la ruta 'home'
+Route::get('/banda-sonora', [QrCancionController::class, 'indexBandaSonora'])->name('banda.sonora');
+
 // Nueva ruta para el formulario de testimonios/comentarios
 Route::get('/tu-maestro', function () {
     return view('comentarios.create');
@@ -48,3 +51,5 @@ Route::get('/descargar-qr/{id}', [QrCancionController::class, 'crearqr'])->name(
 Route::get('/descargar-todos-qrs', [QrCancionController::class, 'descargarZip'])->name('qr.zip');
 
 Route::get('/descargar-qrs-capitulos', [QrCancionController::class, 'descargarZipPorCapitulo']);
+
+Route::get('/admin/generar-qrs-locales', [QrCancionController::class, 'generarQrsLocales']);

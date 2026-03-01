@@ -102,4 +102,34 @@ class QrCancionController extends Controller
 
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
+       public function indexBandaSonora()
+{
+    // Obtenemos los capítulos con sus canciones (Eager Loading)
+    $capitulos = Capitulo::with('canciones')->orderBy('id', 'asc')->get();
+
+    return view('public.banda-sonora', compact('capitulos'));
+}
+
+    public function generarQrsLocales()
+    {
+        // Creamos la carpeta si no existe
+        $path = public_path('qrs-libros');
+        if (!file_exists($path)) {
+            mkdir($path, 0755, true);
+        }
+
+        $canciones = QrCancion::all();
+        foreach ($canciones as $cancion) {
+            $urlQr = "https://www.mismaestrosdevida.com/q/" . $cancion->slug;
+            
+            // Guardamos el QR directamente en public/qrs-libros/qr_67.png
+            QrCode::format('png')
+                ->size(300)
+                ->margin(1)
+                ->generate($urlQr, $path . '/qr_' . $cancion->id . '.png');
+        }
+
+        return "Todos los QR han sido generados en la carpeta local del servidor.";
+    }
+
 }
