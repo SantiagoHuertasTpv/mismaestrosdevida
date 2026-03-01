@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\QrCancion;
+use App\Models\Capitulo;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use ZipArchive;
