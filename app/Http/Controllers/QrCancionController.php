@@ -65,4 +65,41 @@ class QrCancionController extends Controller
         // Retornamos el ZIP y lo eliminamos del servidor tras la descarga
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
+
+    public function descargarZipPorCapitulo()
+    {
+        $zip = new ZipArchive;
+        $zipFileName = 'QR_Libro_Organizado_' . date('Y-m-d') . '.zip';
+        $zipPath = storage_path($zipFileName);
+
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+
+            // Obtenemos todas las canciones ordenadas por capítulo
+            $canciones = QrCancion::orderBy('idcapitulo')->get();
+
+            foreach ($canciones as $cancion) {
+                $urlQr = "https://www.mismaestrosdevida.com/q/" . $cancion->slug;
+
+                // Generamos el QR en alta resolución (500px)
+                $qrCode = QrCode::format('png')
+                    ->size(500)
+                    ->margin(1)
+                    ->errorCorrection('H') // Seguridad máxima para la imprenta
+                    ->generate($urlQr);
+
+                // Definimos el nombre de la carpeta basado en el ID del capítulo
+                $carpeta = $cancion->idcapitulo ? "Capitulo_" . $cancion->idcapitulo : "Sin_Capitulo";
+
+                // Añadimos el archivo al ZIP dentro de su carpeta correspondiente
+                $zip->addFromString("{$carpeta}/{$cancion->id}_qr_{$cancion->nombre}.png", $qrCode);
+            }
+
+            $zip->close();
+        }
+
+        // Limpiamos buffer antes de enviar
+        if (ob_get_length()) ob_end_clean();
+
+        return response()->download($zipPath)->deleteFileAfterSend(true);
+    }
 }

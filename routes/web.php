@@ -46,3 +46,5 @@ Route::get('/descargar-qr/{id}', [QrCancionController::class, 'crearqr'])->name(
 
 // Ruta para descargar el pack completo para la imprenta
 Route::get('/descargar-todos-qrs', [QrCancionController::class, 'descargarZip'])->name('qr.zip');
+
+Route::get('/descargar-qrs-capitulos', [QrCancionController::class, 'descargarZipPorCapitulo']);
