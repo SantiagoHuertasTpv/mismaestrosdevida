@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\CancionController;
+use App\Http\Controllers\QrCancionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +40,9 @@ Route::get('/comentarios/activar/{id}/{token}', [ComentarioController::class, 'a
     
 // Usamos /q/ para que el QR sea más simple y rápido de leer
 Route::get('/q/{slug}', [CancionController::class, 'redirigir'])->name('qr.direct');
+
+// Ruta para descargar el QR individualmente pasando el ID
+Route::get('/descargar-qr/{id}', [QrCancionController::class, 'crearqr'])->name('qr.descargar');
+
+// Ruta para descargar el pack completo para la imprenta
+Route::get('/descargar-todos-qrs', [QrCancionController::class, 'descargarZip'])->name('qr.zip');
