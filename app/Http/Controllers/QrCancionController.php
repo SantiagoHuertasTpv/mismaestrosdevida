@@ -28,7 +28,7 @@ class QrCancionController extends Controller
     // 4. Respuesta manual para saltarnos bloqueos de Laravel
     return response($qrCode)
             ->header('Content-Type', 'image/png')
-            ->header('Content-Disposition', 'attachment; filename="qr_'.$cancion->slug.'.png"');
+            ->header('Content-Disposition', 'attachment; filename="qr_'.$cancion->id.'_'.$cancion->nombre.'.png"');
 }
 
     /**
