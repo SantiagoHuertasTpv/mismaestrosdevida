@@ -12,6 +12,8 @@ class Capitulo extends Model
 
     protected $table = 'capitulos';
 
+    protected $fillable = ['nombre']; 
+
     public function canciones() {
         return $this->hasMany(QrCancion::class, 'idcapitulo');
     }

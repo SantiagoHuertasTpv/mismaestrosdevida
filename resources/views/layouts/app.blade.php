@@ -38,6 +38,7 @@
         <div class="flex space-x-6 items-center mt-4 md:mt-0">
             <a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition-colors text-sm uppercase font-bold">Inicio</a>
             <a href="{{ route('comentarios.create') }}" class="text-gray-300 hover:text-white transition-colors text-sm uppercase font-bold">Tu Maestro</a>
+            <a href="{{ route('banda.sonora') }}" class="text-amber-500 hover:text-white transition-colors text-sm uppercase font-bold">Banda Sonora</a>
             <a href="{{ route('pedido.create') }}" class="text-gray-300 hover:text-white transition-colors text-sm uppercase font-bold">Pedir Libro</a>
             <a href="https://wa.me/34687721447" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase transition-all shadow-lg">
                 WhatsApp

@@ -103,11 +103,10 @@ class QrCancionController extends Controller
 
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
-       public function indexBandaSonora()
+     public function indexBandaSonora()
 {
-    // Obtenemos los capítulos con sus canciones (Eager Loading)
+    // Usamos 'nombre' porque así se llama en tu tabla capítulos
     $capitulos = Capitulo::with('canciones')->orderBy('id', 'asc')->get();
-
     return view('public.banda-sonora', compact('capitulos'));
 }
 
